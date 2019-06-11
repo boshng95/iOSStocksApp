@@ -7,13 +7,32 @@
 //
 
 import UIKit
+import UserNotifications
 
 class TabBarController: UITabBarController {
-
+    
+    var favourite = [[String]]()
+    var notification = [[String]]()
+    var publicCompanies = Companies()
+    let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        for viewController in self.viewControllers!{
+            _ = viewController.view
+        }
+        
+        guard let x = UserDefaults.standard.object(forKey: "favourite") as? [[String]] else {return}
+        favourite = x
+        
+        
+        for i in favourite{
+            if i.indices.contains(3){
+                notification.append(i)
+            }
+        }
+        UserDefaults.standard.set(notification, forKey: "notify")
     }
     
 

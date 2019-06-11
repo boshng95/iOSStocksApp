@@ -1,0 +1,6 @@
+framework module Pods_DTask {
+  umbrella header "Pods-DTask-umbrella.h"
+
+  export *
+  module * { export * }
+}
